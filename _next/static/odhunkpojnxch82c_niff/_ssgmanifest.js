@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fdental\u002F[collegeId]","\u002Fengineering\u002F[collegeId]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
