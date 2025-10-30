@@ -32,6 +32,28 @@
   "openingHours": "Mo-Su 09:00-18:00"
 }
 </script>
+    <style>
+      /* Fix for form input text color */
+      .form-input-text {
+        color: #1f2937 !important; /* gray-800 */
+      }
+      
+      .form-input-text::placeholder {
+        color: #6b7280 !important; /* gray-500 */
+      }
+      
+      .form-select-text {
+        color: #1f2937 !important; /* gray-800 */
+      }
+      
+      .form-textarea-text {
+        color: #1f2937 !important; /* gray-800 */
+      }
+      
+      .form-textarea-text::placeholder {
+        color: #6b7280 !important; /* gray-500 */
+      }
+    </style>
   </head>
   <body class="__variable_d65c78 __variable_b73baa font-sans antialiased">
     <body class="antialiased">
@@ -70,7 +92,7 @@
                   <div class="flex flex-col sm:flex-row gap-4"><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 bg-primary hover:bg-primary/90">Explore Engineering Colleges</button><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background shadow-sm hover:text-accent-foreground h-9 px-4 py-2 border-white text-white hover:bg-white/10">Explore Dental Colleges</button></div>
                 </div>
                 
-                <!-- ENHANCED FORM SECTION - ONLY THIS FORM SHOULD BE VISIBLE -->
+                <!-- ENHANCED FORM SECTION -->
                 <div class="max-w-2xl mx-auto">
                   <div class="bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-2xl p-8 shadow-xl backdrop-blur-sm">
                     <!-- Header Section -->
@@ -101,7 +123,7 @@
                             Full Name *
                           </label>
                           <input 
-                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm" 
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm form-input-text" 
                             placeholder="Enter your full name" 
                             type="text" 
                             name="name" 
@@ -118,7 +140,7 @@
                             Mobile Number *
                           </label>
                           <input 
-                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm" 
+                            class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm form-input-text" 
                             placeholder="Your mobile number" 
                             type="tel" 
                             name="mobile" 
@@ -136,7 +158,7 @@
                           Email Address
                         </label>
                         <input 
-                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm" 
+                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm form-input-text" 
                           placeholder="your.email@example.com" 
                           type="email" 
                           name="email" 
@@ -152,7 +174,7 @@
                           Interested Course/Program *
                         </label>
                         <select 
-                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm appearance-none cursor-pointer"
+                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm appearance-none cursor-pointer form-select-text"
                           name="course"
                           required
                         >
@@ -176,7 +198,7 @@
                           Your Requirements & Goals
                         </label>
                         <textarea 
-                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm min-h-[100px] resize-vertical" 
+                          class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none shadow-sm min-h-[100px] resize-vertical form-textarea-text" 
                           placeholder="Tell us about your academic background, career goals, budget, and any specific requirements..."
                           name="requirements"
                         ></textarea>
