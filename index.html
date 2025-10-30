@@ -195,20 +195,215 @@
         }
       }
 
-      /* Button hover effects */
-      .engineering-btn, .dental-btn {
-        transition: all 0.3s ease;
+      /* Enhanced Action Buttons */
+      .action-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem !important;
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        text-decoration: none;
+        border: none !important;
+        border-radius: 16px !important;
         cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        min-width: 220px;
+        text-align: center;
+        letter-spacing: 0.5px;
       }
-      
+
+      .action-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.7s ease;
+      }
+
+      .action-btn:hover::before {
+        left: 100%;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-4px) scale(1.02) !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
+      }
+
+      .action-btn:active {
+        transform: translateY(-1px) scale(0.98) !important;
+      }
+
+      .btn-icon {
+        transition: transform 0.3s ease;
+        width: 20px;
+        height: 20px;
+      }
+
+      .action-btn:hover .btn-icon {
+        transform: translateX(3px) scale(1.1);
+      }
+
+      /* Engineering Button */
+      .engineering-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+      }
+
       .engineering-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4) !important;
       }
-      
+
+      /* Dental Button */
+      .dental-btn {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        color: white !important;
+      }
+
       .dental-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%) !important;
+        box-shadow: 0 15px 35px rgba(245, 87, 108, 0.4) !important;
+      }
+
+      /* Button Container */
+      .action-buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      @media (min-width: 640px) {
+        .action-buttons-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        
+        .action-btn {
+          flex: 1;
+          min-width: 200px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .action-buttons-container {
+          max-width: 500px;
+        }
+        
+        .action-btn {
+          flex: 0 1 calc(50% - 0.5rem);
+        }
+      }
+
+      /* Pulse animation for attention */
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        50% {
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+        100% {
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      .action-btn.pulse {
+        animation: pulse-glow 3s infinite;
+      }
+
+      /* Enhanced Submit Button Styles */
+      .consultation-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        color: white !important;
+        font-weight: 700 !important;
+        font-size: 1.1rem !important;
+        padding: 1rem 2rem !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4) !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        cursor: pointer !important;
+        letter-spacing: 0.5px !important;
+        text-transform: none !important;
+      }
+
+      .consultation-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.7s ease;
+      }
+
+      .consultation-btn:hover {
+        transform: translateY(-4px) scale(1.02) !important;
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6) !important;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+      }
+
+      .consultation-btn:hover::before {
+        left: 100%;
+      }
+
+      .consultation-btn:active {
+        transform: translateY(-1px) scale(0.98) !important;
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4) !important;
+      }
+
+      .consultation-btn .btn-text {
+        position: relative;
+        z-index: 2;
+      }
+
+      .consultation-btn .btn-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .consultation-btn:hover .btn-icon {
+        transform: translateX(4px) scale(1.1);
+      }
+
+      /* Loading state */
+      .consultation-btn.loading {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+
+      .consultation-btn.loading .btn-text {
+        opacity: 0.7;
+      }
+
+      /* Pulse animation for attention */
+      @keyframes pulse-glow-consult {
+        0% {
+          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        50% {
+          box-shadow: 0 10px 40px rgba(102, 126, 234, 0.8);
+        }
+        100% {
+          box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+      }
+
+      .consultation-btn.pulse {
+        animation: pulse-glow-consult 2s infinite;
       }
     </style>
   </head>
@@ -260,20 +455,33 @@
               <div>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 font-montserrat">Education is the passport of Future,<br/>And we provide visa for it.</h1>
                 <p class="text-lg mb-6 text-blue-100">Get direct admission in top engineering &amp; dental colleges in Bangalore through management quota.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
+                
+                <!-- Enhanced Action Buttons Container -->
+                <div class="action-buttons-container">
                   <!-- Engineering Colleges Button -->
                   <button 
-                    class="engineering-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 bg-primary hover:bg-primary/90"
+                    class="action-btn engineering-btn pulse"
                     onclick="window.location.href='engineering.html'"
                   >
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                      <path d="M12 14l9-5-9-5-9 5 9 5z" opacity="0.5"/>
+                      <path d="M12 14v6l9-5M12 20l-9-5"/>
+                    </svg>
                     Explore Engineering Colleges
                   </button>
                   
                   <!-- Dental Colleges Button -->
                   <button 
-                   class="dental-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 text-primary-foreground shadow h-9 px-4 py-2 bg-primary hover:bg-primary/90"
+                    class="action-btn dental-btn pulse"
                     onclick="window.location.href='dental.html'"
                   >
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10.5 5.5c-1 0-2 .5-2.5 1.5s-1.5 2-1.5 3c0 1.5 1 3 3 3 1 0 2-.5 2.5-1.5s1.5-2 1.5-3c0-1.5-1-3-3-3z"/>
+                      <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                      <path d="M21 10.5s-2 1.5-5 1.5-5-1.5-5-1.5"/>
+                      <path d="M21 16s-2 1.5-5 1.5-5-1.5-5-1.5"/>
+                    </svg>
                     Explore Dental Colleges
                   </button>
                 </div>
@@ -391,14 +599,14 @@
                       ></textarea>
                     </div>
 
-                    <!-- Submit Button -->
+                    <!-- Enhanced Submit Button -->
                     <button 
-                      class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3 group"
+                      class="w-full consultation-btn pulse flex items-center justify-center gap-3 group"
                       type="submit"
                       id="submitBtn"
                     >
-                      <span id="submitText">Get Free Consultation</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <span class="btn-text" id="submitText">Get Free Consultation</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                       </svg>
                     </button>
@@ -457,7 +665,8 @@
         // Show loading state
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submitText');
-        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.classList.remove('pulse');
         submitText.textContent = 'Submitting...';
         
         // Simulate form submission delay
@@ -469,7 +678,7 @@
           document.getElementById('admissionForm').reset();
           
           // Reset button
-          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
           submitText.textContent = 'Get Free Consultation';
         }, 1500);
       });
@@ -515,9 +724,8 @@
         }
       }
 
-      // Button click handlers (alternative method)
+      // Button click handlers
       document.addEventListener('DOMContentLoaded', function() {
-        // You can also add event listeners as an alternative to onclick attributes
         const engineeringBtn = document.querySelector('.engineering-btn');
         const dentalBtn = document.querySelector('.dental-btn');
         
