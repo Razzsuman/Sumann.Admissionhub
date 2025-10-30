@@ -53,10 +53,166 @@
       .form-textarea-text::placeholder {
         color: #6b7280 !important; /* gray-500 */
       }
+      
+      /* Success Animation Styles */
+      .success-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .success-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .success-content {
+        text-align: center;
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        transform: translateY(30px);
+        opacity: 0;
+        transition: all 0.5s ease;
+        max-width: 500px;
+        width: 90%;
+      }
+      
+      .success-overlay.active .success-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .success-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        position: relative;
+        animation: successScale 0.6s ease-out;
+      }
+      
+      .success-icon::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10b981, #059669);
+        animation: pulse 2s infinite;
+        z-index: -1;
+      }
+      
+      .success-icon svg {
+        width: 40px;
+        height: 40px;
+        color: white;
+      }
+      
+      .success-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #059669;
+        margin-bottom: 1rem;
+      }
+      
+      .success-message {
+        color: #6b7280;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      
+      .countdown {
+        font-size: 1.2rem;
+        color: #374151;
+        font-weight: 600;
+      }
+      
+      .countdown-number {
+        color: #059669;
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+      
+      @keyframes successScale {
+        0% {
+          transform: scale(0);
+        }
+        70% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        70% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: #f59e0b;
+        animation: confettiFall 5s linear forwards;
+      }
+      
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
     </style>
   </head>
   <body class="__variable_d65c78 __variable_b73baa font-sans antialiased">
     <body class="antialiased">
+      <!-- Success Overlay -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-content">
+          <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <h2 class="success-title">Form Submitted Successfully!</h2>
+          <p class="success-message">Thank you for your interest. Our admission expert will contact you within 24 hours.</p>
+          <p class="countdown">Redirecting to homepage in <span class="countdown-number" id="countdown">5</span> seconds...</p>
+        </div>
+      </div>
+
       <div class="flex min-h-screen flex-col">
         <header class="sticky top-0 z-40 w-full border-b bg-background">
           <div class="container flex h-16 items-center justify-between py-4">
@@ -111,7 +267,7 @@
                     </div>
 
                     <!-- Form Section -->
-                    <form class="space-y-6" netlify>
+                    <form class="space-y-6" id="admissionForm" netlify>
                       <!-- Personal Information Grid -->
                       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Name Field -->
@@ -208,8 +364,9 @@
                       <button 
                         class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3 group"
                         type="submit"
+                        id="submitBtn"
                       >
-                        <span>Get Free Consultation</span>
+                        <span id="submitText">Get Free Consultation</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                         </svg>
@@ -260,5 +417,72 @@
           <!-- ... your existing footer ... -->
         </footer>
       </div>
+
+      <script>
+        // Form submission handler
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Show loading state
+          const submitBtn = document.getElementById('submitBtn');
+          const submitText = document.getElementById('submitText');
+          submitBtn.disabled = true;
+          submitText.textContent = 'Submitting...';
+          
+          // Simulate form submission delay
+          setTimeout(function() {
+            // Show success animation
+            showSuccessAnimation();
+            
+            // Reset form
+            document.getElementById('admissionForm').reset();
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitText.textContent = 'Get Free Consultation';
+          }, 1500);
+        });
+        
+        function showSuccessAnimation() {
+          const overlay = document.getElementById('successOverlay');
+          const countdownElement = document.getElementById('countdown');
+          
+          // Show overlay
+          overlay.classList.add('active');
+          
+          // Create confetti
+          createConfetti();
+          
+          // Countdown and redirect
+          let countdown = 5;
+          countdownElement.textContent = countdown;
+          
+          const countdownInterval = setInterval(function() {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+              clearInterval(countdownInterval);
+              window.location.href = '/'; // Redirect to homepage
+            }
+          }, 1000);
+        }
+        
+        function createConfetti() {
+          const colors = ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#8b5cf6'];
+          const overlay = document.getElementById('successOverlay');
+          
+          for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            overlay.appendChild(confetti);
+          }
+        }
+      </script>
   </body>
 </html>
