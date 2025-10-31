@@ -487,7 +487,7 @@
                 </div>
               </div>
               
-              <!-- ENHANCED FORM SECTION -->
+              <!-- ENHANCED FORM SECTION - FIXED -->
               <div class="max-w-2xl mx-auto">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-2xl p-8 shadow-xl backdrop-blur-sm">
                   <!-- Header Section -->
@@ -505,8 +505,12 @@
                     <p class="text-gray-600 text-lg">Get personalized admission guidance from our expert consultants</p>
                   </div>
 
-                  <!-- Form Section -->
-                  <form class="space-y-6" id="admissionForm" netlify>
+                  <!-- FORM SECTION - FIXED FOR NETLIFY -->
+                  <form class="space-y-6" id="admissionForm" name="admission-form" method="POST" netlify data-netlify="true">
+                    <!-- NETLIFY FORM FIX: Hidden fields required for Netlify -->
+                    <input type="hidden" name="form-name" value="admission-form">
+                    <input type="hidden" name="bot-field">
+                    
                     <!-- Personal Information Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <!-- Name Field -->
@@ -631,116 +635,3 @@
         <section class="py-16 bg-slate-50">
           <div class="container mx-auto px-4">
             <!-- ... your existing featured colleges section ... -->
-          </div>
-        </section>
-
-        <section class="py-16 bg-white">
-          <div class="container mx-auto px-4">
-            <!-- ... your existing why choose us section ... -->
-          </div>
-        </section>
-
-        <section class="py-16 bg-white">
-          <div class="container mx-auto px-4">
-            <!-- ... your existing engineering colleges section ... -->
-          </div>
-        </section>
-
-        <section class="py-16 bg-slate-50">
-          <div class="container mx-auto px-4">
-            <!-- ... your existing dental colleges section ... -->
-          </div>
-        </section>
-      </main>
-      <footer class="bg-slate-900 text-white">
-        <!-- ... your existing footer ... -->
-      </footer>
-    </div>
-
-    <script>
-      // Form submission handler
-      document.getElementById('admissionForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Show loading state
-        const submitBtn = document.getElementById('submitBtn');
-        const submitText = document.getElementById('submitText');
-        submitBtn.classList.add('loading');
-        submitBtn.classList.remove('pulse');
-        submitText.textContent = 'Submitting...';
-        
-        // Simulate form submission delay
-        setTimeout(function() {
-          // Show success animation
-          showSuccessAnimation();
-          
-          // Reset form
-          document.getElementById('admissionForm').reset();
-          
-          // Reset button
-          submitBtn.classList.remove('loading');
-          submitText.textContent = 'Get Free Consultation';
-        }, 1500);
-      });
-      
-      function showSuccessAnimation() {
-        const overlay = document.getElementById('successOverlay');
-        const countdownElement = document.getElementById('countdown');
-        
-        // Show overlay
-        overlay.classList.add('active');
-        
-        // Create confetti
-        createConfetti();
-        
-        // Countdown and redirect
-        let countdown = 5;
-        countdownElement.textContent = countdown;
-        
-        const countdownInterval = setInterval(function() {
-          countdown--;
-          countdownElement.textContent = countdown;
-          
-          if (countdown <= 0) {
-            clearInterval(countdownInterval);
-            window.location.href = '/'; // Redirect to homepage
-          }
-        }, 1000);
-      }
-      
-      function createConfetti() {
-        const colors = ['#f59e0b', '#ef4444', '#10b981', '#3b82f6', '#8b5cf6'];
-        const overlay = document.getElementById('successOverlay');
-        
-        for (let i = 0; i < 50; i++) {
-          const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = Math.random() * 100 + 'vw';
-          confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.animationDelay = Math.random() * 5 + 's';
-          confetti.style.width = Math.random() * 10 + 5 + 'px';
-          confetti.style.height = Math.random() * 10 + 5 + 'px';
-          overlay.appendChild(confetti);
-        }
-      }
-
-      // Button click handlers
-      document.addEventListener('DOMContentLoaded', function() {
-        const engineeringBtn = document.querySelector('.engineering-btn');
-        const dentalBtn = document.querySelector('.dental-btn');
-        
-        if (engineeringBtn) {
-          engineeringBtn.addEventListener('click', function() {
-            window.location.href = 'engineering.html';
-          });
-        }
-        
-        if (dentalBtn) {
-          dentalBtn.addEventListener('click', function() {
-            window.location.href = 'dental.html';
-          });
-        }
-      });
-    </script>
-  </body>
-</html>
