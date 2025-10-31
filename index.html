@@ -786,14 +786,13 @@
         
         if (form) {
           form.addEventListener('submit', function(e) {
-            // Don't prevent default - let Netlify handle the submission
-            // e.preventDefault();
+            e.preventDefault();
             
             // Show loading state
             submitBtn.classList.add('loading');
             submitText.textContent = 'Submitting...';
             
-            // Show success overlay after a short delay
+            // Simulate form submission delay
             setTimeout(() => {
               // Show success overlay
               successOverlay.classList.add('active');
@@ -813,13 +812,12 @@
                 }
               }, 1000);
               
-              // Reset button state
-              setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                submitText.textContent = 'Get Free Consultation';
-              }, 2000);
+              // Reset form and button
+              form.reset();
+              submitBtn.classList.remove('loading');
+              submitText.textContent = 'Get Free Consultation';
               
-            }, 1000);
+            }, 2000);
           });
         }
       });
