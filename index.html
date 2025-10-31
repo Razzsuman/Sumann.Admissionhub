@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get 100% confirmed direct admission in RV, BMS, MS Ramaiah & top Bangalore colleges via management quota. Call +91 8541811490 for B.Tech, MBA, MBBS seats.">
+    <meta name="description" content="Get 100% confirmed direct admission in RV, BMS, MS Ramaiah & top Bangalore colleges via management quota. Call +91 8118935934 for B.Tech, MBA, MBBS seats.">
     <meta name="keywords" content="direct admission bangalore, management quota admission, engineering colleges bangalore, dental colleges bangalore, B.Tech admission, MBA admission, MBBS admission, RV College, BMS College, MS Ramaiah">
     <meta name="author" content="Bangalore Admission Hub">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Direct Admission in Bangalore | Management Quota 2025 - Bangalore Admission Hub">
-    <meta property="og:description" content="Get 100% confirmed direct admission in RV, BMS, MS Ramaiah & top Bangalore colleges via management quota. Call +91 8541811490 for B.Tech, MBA, MBBS seats.">
+    <meta property="og:description" content="Get 100% confirmed direct admission in RV, BMS, MS Ramaiah & top Bangalore colleges via management quota. Call +91 8118935934 for B.Tech, MBA, MBBS seats.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.bangaloreadmissionhub.com">
     <meta property="og:image" content="https://www.bangaloreadmissionhub.com/og-image.jpg">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Direct Admission in Bangalore | Management Quota 2025">
+    <meta name="twitter:title" content="Direct Admission in Bangalore | Management Quota 2026">
     <meta name="twitter:description" content="Get 100% confirmed direct admission in top Bangalore colleges via management quota.">
     <meta name="twitter:image" content="https://www.bangaloreadmissionhub.com/twitter-image.jpg">
     
@@ -51,10 +51,10 @@
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "Bangalore Admission Hub",
-      "description": "Direct admission consultancy for engineering, dental, and medical colleges in Bangalore through management quota.",
+      "description": "Direct admission consultancy for engineering, dental, and medical colleges in Bangalore through Management Quota.",
       "url": "https://www.bangaloreadmissionhub.com",
       "logo": "https://www.bangaloreadmissionhub.com/logo.png",
-      "telephone": "+91 8541811490",
+      "telephone": "+91 8118935934",
       "email": "info@bangaloreadmissionhub.com",
       "address": {
         "@type": "PostalAddress",
@@ -620,7 +620,7 @@
                     <h2 class="text-3xl font-bold bg-gradient-to-r from-blue-800 to-indigo-800 bg-clip-text text-transparent mb-3">
                       Start Your Academic Journey
                     </h2>
-                    <p class="text-gray-600 text-lg">Get personalized admission guidance from our expert consultants</p>
+                    <p class="text-gray-600 text-lg">Get personalized admission guidance from our Admission Expert</p>
                   </div>
 
                   <!-- FORM SECTION - PROPERLY CONFIGURED FOR NETLIFY -->
@@ -816,6 +816,34 @@
           });
         }
       });
+      // Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      
+      // Change menu icon
+      const menuIcon = mobileMenuButton.querySelector('svg');
+      if (mobileMenu.classList.contains('hidden')) {
+        menuIcon.innerHTML = '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
+      } else {
+        menuIcon.innerHTML = '<line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line>';
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        const menuIcon = mobileMenuButton.querySelector('svg');
+        menuIcon.innerHTML = '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
+      }
+    });
+  }
+});
     </script>
   </body>
 </html>
