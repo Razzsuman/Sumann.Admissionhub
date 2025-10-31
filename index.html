@@ -2,6 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PNKNV4RR');</script>
+    <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get 100% confirmed direct admission in RV, BMS, MS Ramaiah & top Bangalore colleges via management quota. Call +91 8118935934 for B.Tech, MBA, MBBS seats.">
     <meta name="keywords" content="direct admission bangalore, management quota admission, engineering colleges bangalore, dental colleges bangalore, B.Tech admission, MBA admission, MBBS admission, RV College, BMS College, MS Ramaiah">
@@ -596,6 +603,11 @@
     </style>
   </head>
   <body class="__variable_d65c78 __variable_b73baa font-sans antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNKNV4RR"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Success Overlay -->
     <div class="success-overlay" id="successOverlay">
       <div class="success-content">
@@ -1141,6 +1153,16 @@
               return;
             }
             
+            // Track form submission in Google Tag Manager
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'event': 'formSubmission',
+              'formType': 'admissionForm',
+              'formName': 'Admission Consultation Form',
+              'courseInterest': courseSelect.value,
+              'qualification': qualificationSelect.value
+            });
+            
             // Show loading state
             submitBtn.classList.add('button-loading');
             submitBtn.disabled = true;
@@ -1182,6 +1204,30 @@
             }
           });
         }
+
+        // Enhanced GTM Tracking for Phone Clicks
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+          link.addEventListener('click', function() {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'event': 'phoneClick',
+              'phoneNumber': this.getAttribute('href').replace('tel:', ''),
+              'linkLocation': this.closest('header') ? 'header' : 'mobile_menu'
+            });
+          });
+        });
+
+        // Enhanced GTM Tracking for Button Clicks
+        document.querySelectorAll('.action-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'event': 'buttonClick',
+              'buttonType': this.classList.contains('engineering-btn') ? 'engineering_colleges' : 'dental_colleges',
+              'buttonText': this.textContent.trim()
+            });
+          });
+        });
       });
     </script>
   </body>
