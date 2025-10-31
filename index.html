@@ -821,8 +821,8 @@
             
             if (countdown <= 0) {
               clearInterval(countdownInterval);
-              // Remove the parameter from URL without reload
-              window.history.replaceState({}, document.title, window.location.pathname);
+              // FIXED: Actually redirect to homepage
+              window.location.href = '/';
             }
           }, 1000);
         }
