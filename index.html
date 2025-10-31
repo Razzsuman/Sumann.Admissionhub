@@ -624,7 +624,7 @@
                   </div>
 
                   <!-- FORM SECTION - PROPERLY CONFIGURED FOR NETLIFY -->
-                  <form class="space-y-6" id="admissionForm" name="admission-form" method="POST" netlify>
+                  <form class="space-y-6" id="admissionForm" name="admission-form" method="POST" netlify action="/?form-submitted=true">
                     <!-- NETLIFY FORM: Hidden field for form name -->
                     <input type="hidden" name="form-name" value="admission-form">
                     
@@ -784,40 +784,35 @@
           }
         }
         
+        // Check if form was submitted (for Netlify redirect back)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('form-submitted')) {
+          successOverlay.classList.add('active');
+          createConfetti();
+          
+          let countdown = 5;
+          countdownElement.textContent = countdown;
+          
+          const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+              clearInterval(countdownInterval);
+              // Remove the parameter from URL without reload
+              window.history.replaceState({}, document.title, window.location.pathname);
+            }
+          }, 1000);
+        }
+        
         if (form) {
           form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             // Show loading state
             submitBtn.classList.add('loading');
             submitText.textContent = 'Submitting...';
             
-            // Simulate form submission delay
-            setTimeout(() => {
-              // Show success overlay
-              successOverlay.classList.add('active');
-              createConfetti();
-              
-              // Start countdown
-              let countdown = 5;
-              countdownElement.textContent = countdown;
-              
-              const countdownInterval = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
-                
-                if (countdown <= 0) {
-                  clearInterval(countdownInterval);
-                  window.location.href = '/';
-                }
-              }, 1000);
-              
-              // Reset form and button
-              form.reset();
-              submitBtn.classList.remove('loading');
-              submitText.textContent = 'Get Free Consultation';
-              
-            }, 2000);
+            // Allow the form to submit to Netlify normally
+            // The animation will show when Netlify redirects back to the page
           });
         }
       });
