@@ -605,7 +605,7 @@
                 </div>
               </div>
               
-              <!-- ENHANCED FORM SECTION - FIXED -->
+              <!-- ENHANCED FORM SECTION - PROPERLY FIXED FOR NETLIFY -->
               <div class="max-w-2xl mx-auto">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-2xl p-8 shadow-xl backdrop-blur-sm">
                   <!-- Header Section -->
@@ -623,11 +623,10 @@
                     <p class="text-gray-600 text-lg">Get personalized admission guidance from our expert consultants</p>
                   </div>
 
-                  <!-- FORM SECTION - FIXED FOR NETLIFY -->
-                  <form class="space-y-6" id="admissionForm" name="admission-form" method="POST" netlify data-netlify="true" action="/success">
-                    <!-- NETLIFY FORM FIX: Hidden fields required for Netlify -->
+                  <!-- FORM SECTION - PROPERLY CONFIGURED FOR NETLIFY -->
+                  <form class="space-y-6" id="admissionForm" name="admission-form" method="POST" netlify>
+                    <!-- NETLIFY FORM: Hidden field for form name -->
                     <input type="hidden" name="form-name" value="admission-form">
-                    <input type="hidden" name="bot-field">
                     
                     <!-- Personal Information Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -787,13 +786,14 @@
         
         if (form) {
           form.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Don't prevent default - let Netlify handle the submission
+            // e.preventDefault();
             
             // Show loading state
             submitBtn.classList.add('loading');
             submitText.textContent = 'Submitting...';
             
-            // Simulate form submission delay
+            // Show success overlay after a short delay
             setTimeout(() => {
               // Show success overlay
               successOverlay.classList.add('active');
@@ -813,32 +813,14 @@
                 }
               }, 1000);
               
-              // Reset form and button
-              form.reset();
-              submitBtn.classList.remove('loading');
-              submitText.textContent = 'Get Free Consultation';
+              // Reset button state
+              setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                submitText.textContent = 'Get Free Consultation';
+              }, 2000);
               
-            }, 2000);
+            }, 1000);
           });
-        }
-        
-        // Handle Netlify form submission
-        if (window.location.search.includes('form-submitted=true')) {
-          successOverlay.classList.add('active');
-          createConfetti();
-          
-          let countdown = 5;
-          countdownElement.textContent = countdown;
-          
-          const countdownInterval = setInterval(() => {
-            countdown--;
-            countdownElement.textContent = countdown;
-            
-            if (countdown <= 0) {
-              clearInterval(countdownInterval);
-              window.location.href = '/';
-            }
-          }, 1000);
         }
       });
     </script>
