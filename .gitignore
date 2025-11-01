@@ -1,0 +1,22 @@
+# Configuration files
+config.php
+.env
+*.env
+
+# Log files
+*.log
+logs/
+
+# Dependencies
+node_modules/
+vendor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
